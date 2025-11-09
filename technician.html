@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NsixCool — Technician</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = {{theme:{{extend:{{colors:{{nsix:'#0ea5e9'}}}}}}, darkMode:'class'}};</script>
+</head>
+<body class="dark bg-[#041026] text-slate-100 min-h-screen antialiased">
+  <!-- Splash small -->
+  <div id="splash2" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#041026] to-[#000811]">
+    <div class="flex flex-col items-center gap-4">
+      <img src="nsix_logo.jpg" alt="Nsix Logo" class="w-36 h-36 object-contain rounded-lg shadow-xl" />
+      <div class="text-slate-300">Technician Portal</div>
+    </div>
+  </div>
+
+  <div id="app2" class="max-w-6xl mx-auto p-6 opacity-0">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <img src="nsix_logo.jpg" alt="logo" class="w-12 h-12 rounded-md shadow-md" />
+        <div>
+          <h1 class="text-xl font-semibold">NsixCool</h1>
+          <p class="text-sm text-slate-400">Technician Portal</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="customer.html" class="px-3 py-2 rounded bg-slate-800 hover:bg-slate-700 text-sm">Customer</a>
+        <button id="btn-logout" class="px-3 py-2 rounded bg-nsix text-black text-sm hidden">Logout</button>
+      </div>
+    </header>
+
+    <main class="grid md:grid-cols-3 gap-6">
+      <section class="md:col-span-2 space-y-4">
+        <div class="p-6 rounded-2xl bg-slate-800/50 shadow-lg border border-slate-700/30">
+          <div class="flex justify-between items-center mb-3">
+            <h2 class="text-lg font-semibold">Incoming Orders</h2>
+            <div class="text-sm text-slate-400">Teknisi dapat menerima order</div>
+          </div>
+          <div id="incoming" class="space-y-3"></div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-slate-800/50 shadow-lg">
+          <h3 class="font-semibold">My Assigned Orders</h3>
+          <div id="assigned" class="space-y-3 mt-3"></div>
+        </div>
+      </section>
+
+      <aside class="space-y-4">
+        <div class="p-4 rounded-2xl bg-slate-800/50 shadow-lg">
+          <h3 class="font-semibold">Technician</h3>
+          <div id="tech-info" class="mt-3 text-slate-300">Belum login</div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-800/50 shadow-lg">
+          <h3 class="font-semibold">Register / Login</h3>
+          <div class="mt-3 space-y-2">
+            <input id="t-name" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Nama lengkap" />
+            <input id="t-phone" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Nomor telepon" />
+            <div class="flex gap-2">
+              <button id="btn-register" class="flex-1 px-3 py-2 rounded bg-nsix text-black">Register</button>
+              <button id="btn-login-code" class="px-3 py-2 rounded bg-slate-700">Login with ID</button>
+            </div>
+            <input id="t-code" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Masukkan Technician ID" />
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-800/50 shadow-lg text-sm text-slate-400">
+          <h4 class="font-semibold mb-2">About Us</h4>
+          <p class="text-slate-300">Hubungi kami:</p>
+          <p class="mt-2 text-sm"><strong>Phone:</strong> 0851-8331-7766</p>
+          <p class="text-sm"><strong>Address:</strong> Kp. Kedung Halang Pledang, Jalan Raya Cilebut Timur, RT.2/RW.1, Kab. Bogor, Sukaraja, Jawa Barat, ID 16711</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer class="mt-8 text-center text-slate-400 text-sm">© <span id="year2"></span> NsixCool • All rights reserved</footer>
+  </div>
+
+  <script src="technician.js"></script>
+  <script>
+    // splash logic
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{
+        document.getElementById('splash2').classList.add('hidden');
+        document.getElementById('app2').classList.remove('opacity-0');
+      }, 1200);
+      document.getElementById('year2').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

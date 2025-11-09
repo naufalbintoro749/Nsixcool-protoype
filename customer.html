@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NsixCool — Customer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = {{theme:{{extend:{{colors:{{nsix:'#0ea5e9'}}}}}}, darkMode:'class'}};</script>
+  <style>
+    /* subtle backdrop blur for modal */
+    .backdrop-blur { backdrop-filter: blur(6px); }
+    /* logo animation */
+    @keyframes pop {{ 0% {{ transform: scale(.6); opacity: 0 }} 60% {{ transform: scale(1.05); opacity: 1 }} 100% {{ transform: scale(1); }} }}
+  </style>
+</head>
+<body class="dark bg-[#071223] text-slate-100 min-h-screen antialiased">
+  <!-- Splash / Loading -->
+  <div id="splash" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-[#071223] to-[#020617]">
+    <div class="flex flex-col items-center gap-4">
+      <img src="nsix_logo.jpg" alt="Nsix Logo" class="w-48 h-48 object-contain rounded-xl shadow-2xl animate-[pop_900ms_ease]" />
+      <div class="text-slate-300">NsixCool — Smart AC Maintenance</div>
+    </div>
+  </div>
+
+  <div id="app" class="max-w-6xl mx-auto p-6 opacity-0">
+    <header class="flex items-center justify-between mb-6">
+      <div class="flex items-center gap-4">
+        <img src="nsix_logo.jpg" alt="logo" class="w-12 h-12 rounded-md shadow-md" />
+        <div>
+          <h1 class="text-xl font-semibold">NsixCool</h1>
+          <p class="text-sm text-slate-400">Layanan perawatan AC — Customer</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="technician.html" class="px-3 py-2 rounded bg-slate-800 hover:bg-slate-700 text-sm">Technician</a>
+        <button id="btn-orders" class="px-3 py-2 rounded bg-nsix text-black text-sm">My Orders</button>
+      </div>
+    </header>
+
+    <main class="grid md:grid-cols-3 gap-6">
+      <section class="md:col-span-2 space-y-4">
+        <div class="p-6 rounded-2xl bg-gradient-to-br from-slate-800/50 to-slate-900/30 shadow-lg border border-slate-700/30">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="text-lg font-semibold">Pilih Layanan</h2>
+              <p class="text-sm text-slate-400">Layanan profesional, teknisi bersertifikat.</p>
+            </div>
+            <div class="text-sm text-slate-400">Fast booking • Quality guarantee</div>
+          </div>
+          <div id="services" class="mt-6 grid sm:grid-cols-2 gap-4"></div>
+        </div>
+
+        <div id="orders-area" class="p-6 rounded-2xl bg-slate-800/40 shadow-lg hidden">
+          <div class="flex justify-between items-center mb-3">
+            <h3 class="font-semibold">My Orders</h3>
+            <button id="close-orders" class="text-sm text-slate-400 hover:text-white">Close</button>
+          </div>
+          <div id="orders-list" class="space-y-3"></div>
+        </div>
+      </section>
+
+      <aside class="space-y-4">
+        <div class="p-6 rounded-2xl bg-slate-800/40 shadow-lg">
+          <h3 class="font-semibold">Cart</h3>
+          <div id="cart" class="mt-4 space-y-2 text-slate-300">Belum ada layanan</div>
+          <div class="mt-4 flex gap-2">
+            <button id="btn-checkout" class="flex-1 px-4 py-2 rounded-lg bg-nsix text-black hover:scale-[1.02] transition">Checkout</button>
+            <button id="btn-clear" class="px-4 py-2 rounded-lg bg-slate-700 hover:bg-slate-600">Clear</button>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-slate-800/30 shadow-lg text-sm text-slate-400">
+          <h4 class="font-semibold mb-2">About Us</h4>
+          <p class="text-slate-300">NsixCool adalah layanan perawatan AC profesional. Hubungi kami:</p>
+          <p class="mt-2 text-sm"><strong>Phone:</strong> 0851-8331-7766</p>
+          <p class="text-sm"><strong>Address:</strong> Kp. Kedung Halang Pledang, Jalan Raya Cilebut Timur, RT.2/RW.1, Kab. Bogor, Sukaraja, Jawa Barat, ID 16711</p>
+        </div>
+      </aside>
+    </main>
+    <footer class="mt-8 text-center text-slate-400 text-sm">© <span id="year"></span> NsixCool • All rights reserved</footer>
+  </div>
+
+  <!-- Checkout Modal -->
+  <div id="modal" class="fixed inset-0 hidden items-center justify-center z-50">
+    <div class="absolute inset-0 bg-black/60 backdrop-blur"></div>
+    <div class="relative bg-slate-900 rounded-2xl p-6 w-full max-w-md z-10 shadow-xl border border-slate-700/50">
+      <h3 class="text-lg font-semibold mb-3">Checkout</h3>
+      <div class="space-y-3">
+        <input id="c-name" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Nama lengkap" />
+        <input id="c-phone" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Nomor telepon" />
+        <textarea id="c-address" class="w-full p-3 rounded bg-slate-800 text-slate-100" placeholder="Alamat lengkap"></textarea>
+        <input id="c-sched" type="datetime-local" class="w-full p-3 rounded bg-slate-800 text-slate-100" />
+      </div>
+      <div class="mt-4 flex justify-end gap-2">
+        <button id="modal-cancel" class="px-4 py-2 rounded bg-slate-700">Batal</button>
+        <button id="modal-confirm" class="px-4 py-2 rounded bg-nsix text-black">Konfirmasi</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="customer.js"></script>
+  <script>
+    // splash screen logic
+    window.addEventListener('load', ()=>{
+      setTimeout(()=>{
+        document.getElementById('splash').classList.add('hidden');
+        document.getElementById('app').classList.remove('opacity-0');
+      }, 1400);
+      document.getElementById('year').textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
